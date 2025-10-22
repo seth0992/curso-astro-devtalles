@@ -1,0 +1,16 @@
+---
+import type { PokemonData } from "../../interfaces/pokemons-data.response";
+
+const { name, url } = Astro.props;
+
+const response = await fetch(url);
+const data = (await response.json()) as PokemonData;
+---
+
+<div class="rounded border flex flex-col justify-center items-center p-2">
+  <img
+    src={data.sprites.other?.["official-artwork"].front_default}
+    alt={name}
+  />
+  <span>{name}</span>
+</div>
